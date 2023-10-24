@@ -1,0 +1,11 @@
+{
+  "name": "cypress-express-mark",
+  "version": "1.0.0",
+  "description": "Projeto de aprendizado de automação de teste end-to-end (E2E) com o framework Cypress.",
+  "main": "index.js",
+  "author": "Antonio Marques",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^13.3.2"
+  }
+}
