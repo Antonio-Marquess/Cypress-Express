@@ -5,23 +5,8 @@ describe('Tasks', () => {
 
     const taskName = 'Ler o syllabus para tira certificação em teste de software';
 
-    cy.request({
-      url: 'http://localhost:3333/helper/tasks',
-      method: 'DELETE',
-      body: {
-        name: taskName,
-      },
-    }).then((response) => {
-      expect(response.status).to.eq(204);
-    });
-
-    cy.visit('http://localhost:8080');
-
-    cy.get('input[placeholder="Add a new Task"]')
-      .type(taskName);
-
-    cy.contains('button', 'Create')
-      .click();
+    cy.deleteTaskByName(taskName)
+    cy.createTask(taskName);
 
     cy.contains('main div p', 'Ler o syllabus para tira certificação em teste de software')
       .should('be.visible')
@@ -34,29 +19,11 @@ describe('Tasks', () => {
       name: 'Fazer compras',
       is_done: false,
     }
-    cy.request({
-      url: 'http://localhost:3333/helper/tasks',
-      method: 'DELETE',
-      body: { name: task.name },
-    }).then((response) => {
-      expect(response.status).to.eq(204);
-    });
 
-    cy.request({
-      url: 'http://localhost:3333/tasks',
-      method: 'POST',
-      body: task,
-    }).then((response) => {
-      expect(response.status).to.eq(201);
-    });
+    cy.deleteTaskByName(task.name)
+    cy.postTask(task);
 
-    cy.visit('http://localhost:8080');
-
-    cy.get('input[placeholder="Add a new Task"]')
-      .type(task.name);
-
-    cy.contains('button', 'Create')
-      .click();
+    cy.createTask(task.name);
 
     cy.get('.swal2-html-container')
       .should('be.visible')
