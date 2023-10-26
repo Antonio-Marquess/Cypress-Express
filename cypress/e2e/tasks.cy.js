@@ -49,7 +49,7 @@ describe('Tasks', () => {
       cy.deleteTaskByName(task.name)
       cy.postTask(task)
 
-      cy.visit('http://localhost:8080');
+      cy.visit('/');
 
       cy.contains('p', task.name)
         .parent()
@@ -71,7 +71,7 @@ describe('Tasks', () => {
       cy.deleteTaskByName(task.name)
       cy.postTask(task)
 
-      cy.visit('http://localhost:8080');
+      cy.visit('/');
 
       cy.contains('p', task.name)
         .parent()
