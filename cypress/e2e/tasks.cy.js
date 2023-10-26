@@ -61,4 +61,26 @@ describe('Tasks', () => {
     })
   })
 
+  context('Exclusão de tasks', () => {
+    it('Deve excluir uma task', () => {
+      const task = {
+        name: 'Ir ao mercado',
+        is_done: false
+      }
+
+      cy.deleteTaskByName(task.name)
+      cy.postTask(task)
+
+      cy.visit('http://localhost:8080');
+
+      cy.contains('p', task.name)
+        .parent()
+        .find('button[class*=ItemDelete]')
+        .click()
+
+      cy.contains('p', task.name)
+        .should('not.exist')
+    })
+  })
+
 })
