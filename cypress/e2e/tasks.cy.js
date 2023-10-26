@@ -32,4 +32,9 @@ describe('Tasks', () => {
     cy.get('.swal2-confirm')
       .click();
   });
+
+  it('Campo obrigatorio', () => {
+    cy.createTask();
+    cy.isRequired('This is a required field')
+  })
 });
